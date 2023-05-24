@@ -1,0 +1,77 @@
+/* datepicker */
+.calendar {
+	position:relative;
+}
+.ui-datepicker-trigger {
+	position:absolute;
+	top:0;
+	right:2px;
+	cursor:pointer;
+}
+.ui-widget-header {
+	color:#fff;
+	border:none;
+	background:#00a2be;
+}
+.ui-widget-header .ui-icon {
+	background-image:url('../images/icon_calendar_arrow.png');
+}
+.ui-icon-circle-triangle-w {
+	background-position: 0 0;
+}
+.ui-icon-circle-triangle-e {
+	background-position: -16px 0;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus,
+.ui-button:hover,
+.ui-button:focus {
+	border:none;
+	background:none;
+}
+.ui-datepicker td span,
+.ui-datepicker td a {
+	padding:0.4em 0.2em;
+	text-align:center;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+	color:#555;
+	border:none;
+	background:none;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus,
+.ui-button:hover, .ui-button:focus {
+	color:#00a2be;
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+	color:#fff;
+	border:1px solid #00a2be;
+	border-radius:4px;
+	background:#00a2be;
+}
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+	border:1px solid #00a2be;
+	border-radius:4px;
+	color:#00a2be;
+}

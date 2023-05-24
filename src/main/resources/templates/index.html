@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="//www.thymeleaf.org">
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" type="text/css" th:href="@{css/jquery-ui-1.12.1.css}">
+<link rel="stylesheet" th:href="@{css/jsp-test.css}" type="text/css">
+
+<title>spring boot study</title>
+</head>
+<body>
+<div class="main">
+    <div class="container">
+        <div class="logo">
+	        <!-- / 으로 했을경우 자기자신 페이지로 인식 이동안함 그래서 #context-path  -->
+	        <!--  // server.servlet.context-path=/main 설정해야함 -->
+            <a href="/main"><span>SpringBoot</span> <span>STUDY</span></a>
+        </div>
+        <div class="content">
+            <div class="tit">SpringBoot STUDY</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
