@@ -3,7 +3,7 @@ package com.co.kr.code;
 import lombok.Getter;
 
 @Getter
-public class Code {
+public enum Code {
 	S200(0, "Success"), // 성공
 	S201(201, "데이터 없음"),
 	E100(-100, "필수 파라메터 에러"),

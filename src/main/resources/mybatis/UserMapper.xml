@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.co.kr.mapper.UserMapper">
+
+    <!-- selectId -->
+	<select id="mbSelectList" resultType="com.co.kr.domain.LoginDomain" parameterType="hashMap">
+	    SELECT * FROM jsp.member WHERE mb_seq=#{mbSeq}
+	</select>
+	
+    <!-- selectAll -->
+	<select id="mbAllList" resultType="com.co.kr.domain.LoginDomain" parameterType="map">
+	    SELECT * FROM jsp.member order by mb_update_at desc limit #{offset}, #{contentnum}
+	</select>
+	
+	<!-- create -->
+	<insert id="mbCreate" parameterType="com.co.kr.domain.LoginDomain" >
+	   INSERT INTO jsp.member(mb_id, mb_pw, mb_level, mb_ip, mb_use, mb_create_at, mb_update_at)  
+	   VALUES (#{mbId}, #{mbPw}, #{mbLevel}, #{mbIp}, #{mbUse}, now(), now())
+	</insert>
+	
+	<!-- mbGetAll -->
+	<select id="mbGetAll" resultType="int">
+	   SELECT COUNT(*) FROM jsp.member
+	</select>
+	
+	<!-- duplicationCheck -->
+	<select id="mbDuplicationCheck" resultType="int" parameterType="hashMap">
+	   SELECT COUNT(*) FROM jsp.member WHERE mb_id=#{mbId} AND mb_pw=#{mbPw}
+	</select>
+
+	<!-- mbGetId -->	
+	<select id="mbGetId" resultType="com.co.kr.domain.LoginDomain" parameterType="hashMap">
+	   SELECT * FROM jsp.member WHERE mb_id=#{mbId}
+	</select>
+	
+	<!-- update -->
+	<update id="mbUpdate" parameterType="com.co.kr.domain.LoginDomain">
+		UPDATE jsp.member SET
+		        mb_pw=#{mbPw},
+		        mb_level=#{mbLevel},
+	            mb_ip=#{mbIp},
+	            mb_use=#{mbUse}, 
+	            mb_update_at=now()  
+	    WHERE mb_seq=#{mbSeq}
+	</update>
+	
+	<!-- delete -->
+	<delete id="mbRemove" parameterType="hashMap">
+	   DELETE FROM jsp.member WHERE mb_seq=#{mbSeq}
+	</delete>
+</mapper>
