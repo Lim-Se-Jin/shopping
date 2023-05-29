@@ -1,12 +1,79 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.co.kr.mapper.UploadMapper">
+<!-- content insert -->
+	<insert id="contentUpload" parameterType="com.co.kr.domain.BoardContentDomain"
+	useGeneratedKeys="true"
+        keyProperty="bdSeq" keyColumn="bd_seq">
+	
+        INSERT INTO jsp.board (
+            mb_id,   
+						bd_title,                         
+						bd_content  
+        )
+        VALUES (
+            #{mbId},
+            #{bdTitle},
+            #{bdContent}
+        )
+	</insert>
+	
+	<!-- file insert -->
+	<insert id="fileUpload" parameterType="com.co.kr.domain.BoardFileDomain">
+        INSERT INTO jsp.files (
+            bd_seq,
+            mb_id,   
+            up_original_file_name,                         
+            up_new_file_name,                      
+            up_file_path,                                   
+            up_file_size
+        )
+        VALUES (
+            #{bdSeq},
+            #{mbId},
+            #{upOriginalFileName},
+            #{upNewFileName},
+            #{upFilePath},
+            #{upFileSize}
+        )
+    </insert>
 
-	<!--select all-->
-	<select id="boardList" resultType="com.co.kr.domain.BoardListDomain">
-	  SELECT bd_seq, mb_id, bd_title, bd_content, bd_create_at, bd_update_at
-	  FROM jsp.board order by bd_update_at desc
+		<!-- Content update -->
+    <update id="bdContentUpdate" parameterType="com.co.kr.domain.BoardContentDomain">
+        UPDATE jsp.board SET
+                bd_seq=#{bdSeq},
+                mb_id=#{mbId},
+                bd_title=#{bdTitle},
+                bd_content=#{bdContent}, 
+                bd_update_at=now()  
+        WHERE bd_seq=#{bdSeq}
+    </update>
+
+    <!-- file update -->
+    <update id="bdFileUpdate" parameterType="com.co.kr.domain.BoardFileDomain">
+        UPDATE jsp.files SET
+                bd_seq=#{bdSeq},
+                mb_id=#{mbId},
+                up_original_file_name=#{upOriginalFileName},
+                up_new_file_name=#{upNewFileName}, 
+                up_file_path=#{upFilePath},
+                up_file_size=#{upFileSize}
+        WHERE bd_seq=#{bdSeq}
+    </update>
+
+	<!-- Content delete -->
+    <delete id="bdContentRemove" parameterType="hashMap">
+       DELETE FROM jsp.board WHERE bd_seq=#{bdSeq}
+    </delete>
+	<!-- file delete -->
+    <delete id="bdFileRemove" parameterType="com.co.kr.domain.BoardFileDomain">
+	    DELETE FROM jsp.files WHERE up_new_file_name = #{upNewFileName}
+	</delete>
+	<!-- content -->
+	<select id="boardSelectOne" resultType="com.co.kr.domain.BoardListDomain" parameterType="map">
+    SELECT bd_seq, mb_id, bd_title, bd_content, bd_create_at, bd_update_at
+    FROM jsp.board where bd_seq = #{bdSeq}
 	</select>
 
-</mapper>
+	<!-- file -->
+	<select id="boardSelectOneFile" resultType="com.co.kr.domain.BoardFileDomain" parameterType="map">
+    SELECT bd_seq, mb_id, up_original_file_name, up_new_file_name, up_file_path, up_file_size
+    FROM jsp.view_board where bd_seq = #{bdSeq}
+	</select>

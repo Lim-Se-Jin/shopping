@@ -70,7 +70,6 @@ public class UserController {
 		mav.addObject("items", items);
 		
 		mav.setViewName("board/boardList.html"); 
-		
 		return mav;
 	};
 
